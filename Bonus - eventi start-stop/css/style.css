@@ -7,9 +7,10 @@ header .btn{
 }
 header .btn:focus{
     box-shadow: none;
+}
+.border_ani{
     animation: border_ani .5s linear infinite;
 }
-
 .start_btn{
     left: calc(50% - 10rem);
 }
