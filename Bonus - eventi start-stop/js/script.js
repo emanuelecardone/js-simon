@@ -49,3 +49,29 @@ for(let i = 0; i < boxesNumber; i++){
     boxRow.appendChild(currentBoxCol);
 }
 
+// L'obiettivo è che al click venga rimosso il bg white e aggiunto quello azzurro
+startButton.addEventListener('click', function(){
+    
+    // Counter che mi serve sia per selezionare le col che per stoppare l'interval function
+    let myCounter = 0;
+
+    // Funzione setInterval che modifica lo sfondo delle col
+    const boxClocks = setInterval(function(){
+
+        // Devo necessariamente selezionare le col in questo modo altrimenti lavorerei su un array copiato
+        document.getElementsByClassName('col')[myCounter].classList.remove('bg-white');
+        document.getElementsByClassName('col')[myCounter].classList.add('bg-info');
+
+        // Aumenta il counter
+        myCounter++;
+
+        // Operatore ternario per stoppare l'evento
+        (myCounter === boxesNumber) ? clearInterval(boxClocks) : null;
+
+        // L'evento ha un intervallo di .5s
+    }, 500); 
+
+});
+
+
+
