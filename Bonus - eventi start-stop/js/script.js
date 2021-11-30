@@ -4,24 +4,39 @@ const pageBody = document.querySelector('body');
 // Classi stile body
 pageBody.classList.add('w-100', 'vh-100', 'bg-dark');
 
-// Variabile header, main, box container, set fluid+row+cols e footer
+// Variabile header, tasti start/stop, main, box container, set fluid+row+cols e footer
 const pageHeader = document.createElement('header');
+const startButton = document.createElement('button');
+const stopButton = document.createElement('button');
+
 const pageMain = document.createElement('main');
 const boxContainer = document.createElement('div');
 const boxFluid = document.createElement('div');
 const boxRow = document.createElement('div');
+
 const pageFooter = document.createElement('footer');
 
-// Classi stile header, main, box container, set fluid+row+cols e footer
-pageHeader.classList.add('w-100', 'h_100p');
+// Classi stile header, tasti start/stop, main, box container, set fluid+row+cols e footer
+pageHeader.classList.add('w-100', 'h_100p', 'd-flex', 'justify-content-center', 'align-items-center');
+startButton.classList.add('btn', 'btn-danger', 'text-white', 'fw-bold', 'text-center', 'text-uppercase');
+stopButton.classList.add('btn', 'btn-danger', 'text-white', 'fw-bold', 'text-center', 'text-uppercase');
+
 pageMain.classList.add('w-100', 'border', 'd-flex', 'justify-content-center', 'align-items-center', 'border-5', 'border-danger');
 boxContainer.classList.add('w_500p', 'h_500p');
 boxFluid.classList.add('container-fluid', 'h-100');
 boxRow.classList.add('row', 'row-cols-5', 'h-100');
+
 pageFooter.classList.add('w-100', 'h_100p');
 
-// Inserimento in pagina header, main, box container, set fluid+row+cols e footer
+// Contenuto testo tasti start/stop
+startButton.innerText = 'Start';
+stopButton.innerText = 'Stop';
+
+// Inserimento in pagina header, tasti start/stop, main, box container, set fluid+row+cols e footer
 pageBody.append(pageHeader, pageMain, pageFooter);
+
+pageHeader.append(startButton, stopButton);
+
 pageMain.appendChild(boxContainer);
 boxContainer.appendChild(boxFluid);
 boxFluid.appendChild(boxRow);

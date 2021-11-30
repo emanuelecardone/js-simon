@@ -1,6 +1,13 @@
 /* COMMON */
 
 /* HEADER */
+header{
+    gap: 5rem;
+}
+header .btn{
+    letter-spacing: .5rem;
+    text-indent: .5rem;
+}
 
 /* MAIN */
 main{
