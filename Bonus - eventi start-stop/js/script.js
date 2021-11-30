@@ -57,8 +57,22 @@ let boxClocks;
 // quindi clickando di nuovo Start riprenderà da dove ha stoppato
 let myCounter = 0;
 
+// Debug per rendere start non usabile anche dopo che clicco Stop e Start per riprendere
+let userStopped = false;
+
 // L'obiettivo è che al click di Start venga rimosso il bg white e aggiunto quello azzurro ad una col per volta ogni mezzo secondo
 startButton.addEventListener('click', function(){
+
+    // Faccio in modo che i click su start vengano ignorati durante l'esecuzione
+    // Poiché attiverebbe la funzione di nuovo, è un debug
+    // se tutte le col vengono colorate, posso cliccare di nuovo start
+    // La flag mi permette di riaggiungere questa restrizione anche se l'utente clicka Stop e Start di nuovo
+    if(myCounter === 0 || userStopped){
+        this.style.pointerEvents = "none";
+    }
+    // Il counter si resetta se ha colorato tutte le col
+    myCounter = (myCounter === boxesNumber) ? 0 : myCounter;
+    console.log(myCounter);
 
     // Funzione setInterval che modifica lo sfondo delle col
     boxClocks = setInterval(function(){
@@ -70,16 +84,38 @@ startButton.addEventListener('click', function(){
         // Aumenta il counter
         myCounter++;
 
-        // Operatore ternario per stoppare l'evento e resettare il counter a 0
-        (myCounter === boxesNumber) ? clearInterval(boxClocks) : null;
+        // Condizione di uscita dall'evento (quando tutte le col sono colorate)
+        if(myCounter === boxesNumber){
+            // Parte un for che interagisce con col ed altro
+            for(let i = 0; i < boxesNumber; i++){
+                // Si ferma l'evento che colora le col
+                clearInterval(boxClocks);
+                // Start torna clickabile
+                startButton.style.pointerEvents = "auto";
+                // Dopo 1 secondo dalla fine dell'evento, il colore delle col si ripristina
+                // così da poter ricominciare l'evento colorandole come prima
+                setTimeout(function(){
+                    document.getElementsByClassName('col')[i].classList.remove('bg-info');
+                    document.getElementsByClassName('col')[i].classList.add('bg-white');
+                }, 1000);
+            }
+        }
 
         // L'evento ha un intervallo di .5s
     }, 500); 
+
+    
 
 });
 
 // L'obiettivo è che al click di Stop venga fermata l'animazione che colora lo sfondo delle col
 stopButton.addEventListener('click', function(){
+
+    // Flag che fa capire al computer che l'utente ha clickato Stop
+    userStopped = true;
+    // Start diventa di nuovo clickabile
+    startButton.style.pointerEvents = "auto";
+    // Si ferma l'evento
     clearInterval(boxClocks);
 });
 
