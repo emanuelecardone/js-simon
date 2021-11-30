@@ -1,12 +1,19 @@
 /* COMMON */
 
 /* HEADER */
-header{
-    gap: 5rem;
-}
 header .btn{
     letter-spacing: .5rem;
     text-indent: .5rem;
+}
+header .btn:focus{
+    box-shadow: none;
+    animation: border_ani .5s linear infinite;
+}
+.start_btn{
+    left: calc(50% - 10rem);
+}
+.stop_btn{
+    right: calc(50% - 10rem);
 }
 
 /* MAIN */
@@ -15,3 +22,16 @@ main{
 }
 
 /* FOOTER */
+
+/* ANIMAZIONI */
+@keyframes border_ani{
+    0%{
+        border: 2px solid white;
+    }
+    50%{
+        border: 4px solid white;
+    }
+    100%{
+        border: 2px solid white;
+    }
+}

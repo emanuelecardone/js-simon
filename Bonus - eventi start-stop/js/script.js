@@ -17,9 +17,10 @@ const boxRow = document.createElement('div');
 const pageFooter = document.createElement('footer');
 
 // Classi stile header, tasti start/stop, main, box container, set fluid+row+cols e footer
+// Il position fixed è un debug per non far muovere il bottone deselezionato all'animazione del selezionato
 pageHeader.classList.add('w-100', 'h_100p', 'd-flex', 'justify-content-center', 'align-items-center');
-startButton.classList.add('btn', 'btn-danger', 'text-white', 'fw-bold', 'text-center', 'text-uppercase');
-stopButton.classList.add('btn', 'btn-danger', 'text-white', 'fw-bold', 'text-center', 'text-uppercase');
+startButton.classList.add('start_btn', 'btn', 'btn-danger', 'text-white', 'fw-bold', 'text-center', 'text-uppercase', 'position-fixed');
+stopButton.classList.add('stop_btn', 'btn', 'btn-danger', 'text-white', 'fw-bold', 'text-center', 'text-uppercase', 'position-fixed');
 
 pageMain.classList.add('w-100', 'border', 'd-flex', 'justify-content-center', 'align-items-center', 'border-5', 'border-danger');
 boxContainer.classList.add('w_500p', 'h_500p');
