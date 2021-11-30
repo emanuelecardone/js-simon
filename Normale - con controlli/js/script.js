@@ -18,7 +18,7 @@ for(let i = 0; i < numbersAmount; i++){
 console.log(numbersArray);
 
 // Counter con valore di default iniziale
-let countStart = 30;
+let countStart = 3;
 // Leggo il conteggio in console a partire da 30
 console.log(countStart);
 
@@ -38,16 +38,22 @@ const clock = setInterval(function(){
 
         // Al termine, oltre a fermare la funzione eseguo anche il risultato finale
         // Uso filter per creare un array di soli numeri indovinati dall'utente
-        const rightUserNumbers = numbersArray.filter((element, index, array) => {
+        const rightUserNumbers = [];
+        numbersArray.forEach((element, index, array) => {
 
-            // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
-            const currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`));
+            let currentUserNumber;
+            while(checkLetters(currentUserNumber)){
 
+                // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
+                // Inserisco il trim per fixare eventuali spazi ai lati dell'utente, poi trasformo in parseInt
+                currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`).trim());
+            }
+            
             // Se il numero inserito dall'utente è presente nell'array dei numeri usciti
             if(array.includes(currentUserNumber)){
-                // Lo aggiungo all'array dei numeri indovinati
-                return currentUserNumber;
-            } 
+                rightUserNumbers.push(currentUserNumber);
+            }
+
         });
         
         // Output finale
@@ -60,7 +66,7 @@ const clock = setInterval(function(){
         Ecco i numeri che hai indovinato: ${rightUserNumbers}
         `);
 
-    }        
+    }         
 
 }, 1000);
 
