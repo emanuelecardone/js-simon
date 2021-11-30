@@ -49,14 +49,19 @@ for(let i = 0; i < boxesNumber; i++){
     boxRow.appendChild(currentBoxCol);
 }
 
-// L'obiettivo è che al click venga rimosso il bg white e aggiunto quello azzurro ad una col per volta ogni mezzo secondo
+
+// Devo dichiarare boxClocks fuori per renderlo leggibile da Start e Stop
+let boxClocks;
+// Counter che mi serve sia per selezionare le col che per stoppare l'interval function
+// Il counter lo lascio fuori da Start, così se si clicka Stop l'indice di Start non verrà resettato a 0
+// quindi clickando di nuovo Start riprenderà da dove ha stoppato
+let myCounter = 0;
+
+// L'obiettivo è che al click di Start venga rimosso il bg white e aggiunto quello azzurro ad una col per volta ogni mezzo secondo
 startButton.addEventListener('click', function(){
-    
-    // Counter che mi serve sia per selezionare le col che per stoppare l'interval function
-    let myCounter = 0;
 
     // Funzione setInterval che modifica lo sfondo delle col
-    const boxClocks = setInterval(function(){
+    boxClocks = setInterval(function(){
 
         // Devo necessariamente selezionare le col in questo modo altrimenti lavorerei su un array copiato
         document.getElementsByClassName('col')[myCounter].classList.remove('bg-white');
@@ -65,12 +70,17 @@ startButton.addEventListener('click', function(){
         // Aumenta il counter
         myCounter++;
 
-        // Operatore ternario per stoppare l'evento
+        // Operatore ternario per stoppare l'evento e resettare il counter a 0
         (myCounter === boxesNumber) ? clearInterval(boxClocks) : null;
 
         // L'evento ha un intervallo di .5s
     }, 500); 
 
+});
+
+// L'obiettivo è che al click di Stop venga fermata l'animazione che colora lo sfondo delle col
+stopButton.addEventListener('click', function(){
+    clearInterval(boxClocks);
 });
 
 
