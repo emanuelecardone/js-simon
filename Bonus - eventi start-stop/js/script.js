@@ -49,7 +49,7 @@ for(let i = 0; i < boxesNumber; i++){
     boxRow.appendChild(currentBoxCol);
 }
 
-// L'obiettivo è che al click venga rimosso il bg white e aggiunto quello azzurro
+// L'obiettivo è che al click venga rimosso il bg white e aggiunto quello azzurro ad una col per volta ogni mezzo secondo
 startButton.addEventListener('click', function(){
     
     // Counter che mi serve sia per selezionare le col che per stoppare l'interval function
