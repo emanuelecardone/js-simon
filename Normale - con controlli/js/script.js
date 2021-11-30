@@ -18,7 +18,7 @@ for(let i = 0; i < numbersAmount; i++){
 console.log(numbersArray);
 
 // Counter con valore di default iniziale
-let countStart = 3;
+let countStart = 30;
 // Leggo il conteggio in console a partire da 30
 console.log(countStart);
 
@@ -41,12 +41,13 @@ const clock = setInterval(function(){
         const rightUserNumbers = [];
         numbersArray.forEach((element, index, array) => {
 
+            // Richiamo alla funzione controllo sui numeri dell'altro file js
+            // Il prompt va avanti finché l'utente non inserisce un numero
             let currentUserNumber;
             while(checkLetters(currentUserNumber)){
-
                 // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
-                // Inserisco il trim per fixare eventuali spazi ai lati dell'utente, poi trasformo in parseInt
-                currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`).trim());
+                // Non uso il trim per fixare eventuali spazi ai lati dell'utente, poiché lo fa il parseInt
+                currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`));
             }
             
             // Se il numero inserito dall'utente è presente nell'array dei numeri usciti
