@@ -1,0 +1,67 @@
+// Descrizione:
+// Visualizzare con degli alert 5 numeri casuali. Da lì parte un timer di 30 secondi.
+// Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
+// Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+
+
+// Creo i numeri casuali da 1 a 100 e li metto in un array
+// Faccio anche visualizzare i 5 numeri con 5 alert diversi
+const numbersArray = [];
+const numbersAmount = 5;
+for(let i = 0; i < numbersAmount; i++){
+    const currentNumber = Math.floor(Math.random() * 100) + 1;
+    numbersArray.push(currentNumber);
+    alert(`Numero ${i+1}: ${currentNumber}`);
+}
+
+// Visualizzo i numeri usciti in pagina
+console.log(numbersArray);
+
+// Counter con valore di default iniziale
+let countStart = 30;
+// Leggo il conteggio in console a partire da 30
+console.log(countStart);
+
+// Funzione Interval ripetuta ogni secondo
+const clock = setInterval(function(){
+
+    // Scende il counter
+    countStart--;
+    // Lo visualizzo in console ogni secondo
+    console.log(countStart);
+
+    // Condizione di uscita dalla funzione asincrona
+    if(countStart === 0){
+
+        // La funzione Interval viene fermata
+        clearInterval(clock);   
+
+        // Al termine, oltre a fermare la funzione eseguo anche il risultato finale
+        // Uso filter per creare un array di soli numeri indovinati dall'utente
+        const rightUserNumbers = numbersArray.filter((elelemnt, index, array) => {
+
+            // Numero inserito dall'utente
+            const currentUserNumber = parseInt(prompt(`Inserisci il numero ${index+1}`));
+
+            // Se il numero inserito dall'utente è presente nell'array dei numeri usciti
+            if(array.includes(currentUserNumber)){
+                // Lo aggiungo all'array dei numeri indovinati
+                return currentUserNumber;
+            } 
+        });
+        
+        // Output finale
+        // L'array iniziale e dei numeri indovinati ce l'ho già
+        // La quantità dei numeri indovinati sarà logicamente
+        // uguale alla lunghezza dell'array di indovinati
+        alert(` 
+        Ecco i numeri che erano usciti: ${numbersArray}
+        Hai indovintato ${rightUserNumbers.length} numeri
+        Ecco i numeri che hai indovinato: ${rightUserNumbers}
+        `);
+
+    }        
+
+}, 1000);
+
+
