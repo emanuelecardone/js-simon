@@ -60,19 +60,23 @@ let myCounter = 0;
 // Debug per rendere start non usabile anche dopo che clicco Stop e Start per riprendere
 let userStopped = false;
 
-// L'obiettivo è che al click di Start venga rimosso il bg white e aggiunto quello azzurro ad una col per volta ogni mezzo secondo
+// // L'obiettivo è che al click di Start venga rimosso il bg white e aggiunto quello azzurro ad una col per volta ogni mezzo secondo
 startButton.addEventListener('click', function(){
 
-    // Rimuove i bordi animati da Stop e li assegna a sé stesso
-    stopButton.classList.remove('border_ani');
-    this.classList.add('border_ani');
+    const switchToStart = () => {
+        // Rimuove i bordi animati da Stop e li assegna a sé stesso
+        stopButton.classList.remove('border_ani');
+        this.classList.add('border_ani');
+    };
+
+    switchToStart();
 
     // Faccio in modo che i click su start vengano ignorati durante l'esecuzione
     // Poiché attiverebbe la funzione di nuovo, è un debug
     // se tutte le col vengono colorate, posso cliccare di nuovo start
     // La flag mi permette di riaggiungere questa restrizione anche se l'utente clicka Stop e Start di nuovo
     if(myCounter === 0 || userStopped){
-        this.style.pointerEvents = "none";
+         this.style.pointerEvents = "none";
     }
     // Il counter si resetta se ha colorato tutte le col
     myCounter = (myCounter === boxesNumber) ? 0 : myCounter;
@@ -114,9 +118,15 @@ startButton.addEventListener('click', function(){
 
 // L'obiettivo è che al click di Stop venga fermata l'animazione che colora lo sfondo delle col
 stopButton.addEventListener('click', function(){
-    // Rimuove i bordi animati da Start e li assegna a sé stesso
-    startButton.classList.remove('border_ani');
-    this.classList.add('border_ani');
+
+    const switchToStop = () => {
+        // Rimuove i bordi animati da Stop e li assegna a sé stesso
+        startButton.classList.remove('border_ani');
+        this.classList.add('border_ani');
+    };
+
+    switchToStop();
+    
     // Flag che fa capire al computer che l'utente ha clickato Stop
     userStopped = true;
     // Start diventa di nuovo clickabile
@@ -124,6 +134,5 @@ stopButton.addEventListener('click', function(){
     // Si ferma l'evento
     clearInterval(boxClocks);
 });
-
 
 
