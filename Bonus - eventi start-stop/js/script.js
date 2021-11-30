@@ -120,7 +120,7 @@ startButton.addEventListener('click', function(){
 stopButton.addEventListener('click', function(){
 
     const switchToStop = () => {
-        // Rimuove i bordi animati da Stop e li assegna a sé stesso
+        // Rimuove i bordi animati da Start e li assegna a sé stesso
         startButton.classList.remove('border_ani');
         this.classList.add('border_ani');
     };
