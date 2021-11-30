@@ -51,7 +51,7 @@ for(let i = 0; i < boxesNumber; i++){
 
 
 // Devo dichiarare boxClocks fuori per renderlo leggibile da Start e Stop
-let boxClocks;
+let boxesClock;
 // Counter che mi serve sia per selezionare le col che per stoppare l'interval function
 // Il counter lo lascio fuori da Start, così se si clicka Stop l'indice di Start non verrà resettato a 0
 // quindi clickando di nuovo Start riprenderà da dove ha stoppato
@@ -83,7 +83,7 @@ startButton.addEventListener('click', function(){
     console.log(myCounter);
 
     // Funzione setInterval che modifica lo sfondo delle col
-    boxClocks = setInterval(function(){
+    boxesClock = setInterval(function(){
 
         // Devo necessariamente selezionare le col in questo modo altrimenti lavorerei su un array copiato
         document.getElementsByClassName('col')[myCounter].classList.remove('bg-white');
@@ -97,12 +97,12 @@ startButton.addEventListener('click', function(){
             // Parte un for che interagisce con col ed altro
             for(let i = 0; i < boxesNumber; i++){
                 // Si ferma l'evento che colora le col
-                clearInterval(boxClocks);
+                clearInterval(boxesClock);
                 // Start torna clickabile
                 startButton.style.pointerEvents = "auto";
                 // Dopo 1 secondo dalla fine dell'evento, il colore delle col si ripristina
                 // così da poter ricominciare l'evento colorandole come prima
-                setTimeout(function(){
+                const resetClock = setTimeout(function(){
                     document.getElementsByClassName('col')[i].classList.remove('bg-info');
                     document.getElementsByClassName('col')[i].classList.add('bg-white');
                     // Rimuovo l'animazione dal tasto start poiché non sarà più attivo
@@ -134,7 +134,7 @@ stopButton.addEventListener('click', function(){
     // Start diventa di nuovo clickabile
     startButton.style.pointerEvents = "auto";
     // Si ferma l'evento
-    clearInterval(boxClocks);
+    clearInterval(boxesClock);
 });
 
 
