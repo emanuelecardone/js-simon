@@ -138,7 +138,7 @@ startButton.addEventListener('click', function(){
     boxesClock = setInterval(function(){
 
         // Devo necessariamente selezionare le col in questo modo altrimenti lavorerei su un array copiato
-        document.getElementsByClassName('boxes_col')[myCounter].classList.remove('bg-white');
+        document.getElementsByClassName('boxes_col')[myCounter].classList.remove('bg-white', `${userColor}_bg`);
         document.getElementsByClassName('boxes_col')[myCounter].classList.add(`${userColor}_bg`);
 
         // Aumenta il counter
