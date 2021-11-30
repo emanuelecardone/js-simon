@@ -105,6 +105,8 @@ startButton.addEventListener('click', function(){
                 setTimeout(function(){
                     document.getElementsByClassName('col')[i].classList.remove('bg-info');
                     document.getElementsByClassName('col')[i].classList.add('bg-white');
+                    // Rimuovo l'animazione dal tasto start poiché non sarà più attivo
+                    startButton.classList.remove('border_ani');
                 }, 1000);
             }
         }
