@@ -38,7 +38,7 @@ const clock = setInterval(function(){
 
         // Al termine, oltre a fermare la funzione eseguo anche il risultato finale
         // Uso filter per creare un array di soli numeri indovinati dall'utente
-        const rightUserNumbers = numbersArray.filter((elelemnt, index, array) => {
+        const rightUserNumbers = numbersArray.filter((element, index, array) => {
 
             // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
             const currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`));
