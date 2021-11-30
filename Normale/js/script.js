@@ -37,6 +37,9 @@ const clock = setInterval(function(){
         clearInterval(clock);   
 
         // Al termine, oltre a fermare la funzione eseguo anche il risultato finale
+        // Potevo anche creare una funzione col setTimeout (30s di ritardo) ed attivarla quindi concatenandola con la fine del timer
+        // oppure evitare il setInterval completamente e far partire il prompt dopo 30s usando solo setTimeout
+        // la scelta del setInterval è per rendere possibile la visualizzazione del timer in ogni secondo
         // Uso filter per creare un array di soli numeri indovinati dall'utente
         const rightUserNumbers = [];
         numbersArray.forEach((element, index, array) => {
