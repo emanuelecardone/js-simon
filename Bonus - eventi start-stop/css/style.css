@@ -1,4 +1,16 @@
 /* COMMON */
+.cyan_bg{
+    background-color: cyan;
+}
+.red_bg{
+    background-color: red;
+}
+.yellow_bg{
+    background-color: yellow;
+}
+.purple_bg{
+    background-color: purple;
+}
 
 /* HEADER */
 header .btn{
@@ -21,6 +33,9 @@ header .btn:focus{
 /* MAIN */
 main{
     height: calc(100% - 200px);
+}
+.colors_wrapper{
+    top: 7.5%;
 }
 
 /* FOOTER */
