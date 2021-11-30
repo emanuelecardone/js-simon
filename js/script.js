@@ -40,8 +40,8 @@ const clock = setInterval(function(){
         // Uso filter per creare un array di soli numeri indovinati dall'utente
         const rightUserNumbers = numbersArray.filter((elelemnt, index, array) => {
 
-            // Numero inserito dall'utente
-            const currentUserNumber = parseInt(prompt(`Inserisci il numero ${index+1}`));
+            // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
+            const currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`));
 
             // Se il numero inserito dall'utente è presente nell'array dei numeri usciti
             if(array.includes(currentUserNumber)){
