@@ -1,0 +1,27 @@
+/* COMMON */
+
+/* MAIN */
+.social_wrapper{
+    width: 90%;
+    max-width: 800px;
+}
+.post_main_wrapper{
+    gap: 30px;
+}
+.up_img_wrapper{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile_pic{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.post_up_wrapper{
+    gap: 30px;
+}
+.middle_pic{
+    height: 600px;
+}
