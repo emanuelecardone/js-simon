@@ -10,7 +10,8 @@ const postsArray = [
             image: 'img/user/user0.png'
         },
         likes: 30,
-        created: '21-09-2021'
+        created: '21-09-2021',
+        tags: ['nature', 'leaf', 'water']
     },
     {
         id: 2,
@@ -21,7 +22,8 @@ const postsArray = [
             image: null
         },
         likes: 44,
-        created: '15-03-2021'
+        created: '15-03-2021',
+        tags: ['nature', 'lake', 'sky']
     },
     {
         id: 3,
@@ -32,7 +34,8 @@ const postsArray = [
             image: 'img/user/user1.png'
         },
         likes: 21,
-        created: '30-11-2021'
+        created: '30-11-2021',
+        tags: ['red leafs']
     },
     {
         id: 4,
@@ -43,7 +46,8 @@ const postsArray = [
             image: 'img/user/user2.png'
         },
         likes: 92,
-        created: '07-10-2021'
+        created: '07-10-2021',
+        tags: []
     },
     {
         id: 5,
@@ -54,7 +58,8 @@ const postsArray = [
             image: null
         },
         likes: 67,
-        created: '11-01-2021'
+        created: '11-01-2021',
+        tags: ['waterfall', 'trees']
     },
 ];
 
@@ -105,7 +110,7 @@ socialFluid.appendChild(socialRow);
 const numberOfPosts = 5;
 postsArray.forEach((element, index, array) => {
 
-    const {id, content, media, author, created} = element;
+    const {id, content, media, author, created, tags} = element;
     let {likes} = element;
     const {name, image} = author;
 
@@ -131,12 +136,14 @@ postsArray.forEach((element, index, array) => {
     // Post sub-sections
     const currentPostUpImgSection = document.createElement('div');
     const currentPostUpTextSection = document.createElement('div');
+    const currentPostUpTagsSection = document.createElement('div');
     const currentPostMiddleTextSection = document.createElement('div');
     const currentPostMiddleImgSection = document.createElement('div');
     const currentPostDownBtnSection = document.createElement('div');
     const currentPostDownLikesSection = document.createElement('div');
     currentPostUpImgSection.classList.add('up_img_wrapper', 'd-flex', 'justify-content-center', 'align-items-center');
-    currentPostUpSection.append(currentPostUpImgSection, currentPostUpTextSection);
+    currentPostUpTagsSection.classList.add('tags_wrapper', 'h-100', 'd-flex', 'align-items-center');
+    currentPostUpSection.append(currentPostUpImgSection, currentPostUpTextSection, currentPostUpTagsSection);
     currentPostMiddleSection.append(currentPostMiddleTextSection, currentPostMiddleImgSection);
     currentPostDownSection.append(currentPostDownBtnSection, currentPostDownLikesSection);
 
@@ -144,6 +151,7 @@ postsArray.forEach((element, index, array) => {
     const currentPostUpImg = document.createElement('img');
     const currentPostUpName = document.createElement('h5');
     const currentPostUpDate = document.createElement('span');
+    const currentPostUpTags = document.createElement('ul');
     const currentPostMiddleText = document.createElement('p');
     const currentPostMiddleImg = document.createElement('img');
     const currentPostDownBtn = document.createElement('button');
@@ -151,6 +159,7 @@ postsArray.forEach((element, index, array) => {
     currentPostUpImg.classList.add('profile_pic');
     currentPostUpName.classList.add('profile_name', 'my-1');
     currentPostUpDate.classList.add('post_date');
+    currentPostUpTags.classList.add('tags_list', 'd-flex', 'justify-content-around', 'p-0', 'm-0');
     currentPostMiddleText.classList.add('text-center');
     currentPostMiddleImg.classList.add('middle_pic', 'w-100');
     currentPostDownBtn.classList.add('down_btn', 'btn', 'border', 'border-2', 'border-light');
@@ -182,6 +191,17 @@ postsArray.forEach((element, index, array) => {
         currentPostUpImgSection.innerText = `${fN} ${lN}`;
     }
     currentPostUpTextSection.append(currentPostUpName, currentPostUpDate);
+    // Creo le li
+    tags.forEach((tagsElement, tagsIndex, tagsArray) => {
+        const currentTagsLi = document.createElement('li');
+        const currentTagsLink = document.createElement('a');
+        currentTagsLink.classList.add('fw-bold', 'text-info');
+        currentTagsLink.innerText = `#${tagsElement}`;
+        currentTagsLink.href = "#";
+        currentTagsLi.appendChild(currentTagsLink);
+        currentPostUpTags.appendChild(currentTagsLi);
+    });
+    currentPostUpTagsSection.appendChild(currentPostUpTags);
     currentPostMiddleTextSection.appendChild(currentPostMiddleText);
     currentPostMiddleImgSection.appendChild(currentPostMiddleImg);
     currentPostDownBtnSection.appendChild(currentPostDownBtn);

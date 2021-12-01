@@ -5,6 +5,9 @@
 .my_lime_bg{
     background-color: lime;
 }
+ul{
+    list-style-type: none;
+}
 
 /* MAIN */
 .social_wrapper{
@@ -27,6 +30,9 @@
 }
 .post_up_wrapper{
     gap: 30px;
+}
+.tags_list{
+    gap: .5rem;
 }
 .middle_pic{
     height: 600px;
