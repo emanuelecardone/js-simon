@@ -1,4 +1,5 @@
 // ARRAY DI OGGETTI
+const likesId = [1, 3, 4];
 const postsArray = [
     {
         id: 1,
@@ -151,7 +152,13 @@ postsArray.forEach((element, index, array) => {
     currentPostUpDate.classList.add('post_date');
     currentPostMiddleText.classList.add('text-center');
     currentPostMiddleImg.classList.add('middle_pic', 'w-100');
-    currentPostDownBtn.classList.add('down_btn', 'btn', 'btn-light', 'border', 'border-2', 'border-light');
+    currentPostDownBtn.classList.add('down_btn', 'btn', 'border', 'border-2', 'border-light');
+    // Assegno il colore verde al tasto dei post che hanno il like dell'utente
+    if(likesId.includes(id)){
+        currentPostDownBtn.style.backgroundColor = "lime";
+    } else{
+        currentPostDownBtn.classList.add('btn-light');
+    }
     currentPostDownLikes.classList.add('text-center');
     currentPostMiddleImg.src = media;
     currentPostUpName.innerText = name;
@@ -175,6 +182,9 @@ postsArray.forEach((element, index, array) => {
     currentPostMiddleImgSection.appendChild(currentPostMiddleImg);
     currentPostDownBtnSection.appendChild(currentPostDownBtn);
     currentPostDownLikesSection.appendChild(currentPostDownLikes);
+
+    
+
 })
 
 // Funzione per rimuovere i trattini dalle date e dividerle in 3 sottostringhe
