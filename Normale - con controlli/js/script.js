@@ -6,13 +6,17 @@
 
 // Creo i numeri casuali da 1 a 100 e li metto in un array
 // Faccio anche visualizzare i 5 numeri con 5 alert diversi
+// Up: i numeri non capiteranno più uguali
 const numbersArray = [];
 const numbersAmount = 5;
-for(let i = 0; i < numbersAmount; i++){
+while(numbersArray.length < numbersAmount){
     const currentNumber = Math.floor(Math.random() * 100) + 1;
-    numbersArray.push(currentNumber);
-    alert(`Numero ${i+1}: ${currentNumber}`);
+    if(!numbersArray.includes(currentNumber)){
+        numbersArray.push(currentNumber);
+        alert(`Numero ${numbersArray.length}: ${currentNumber}`);
+    } 
 }
+
 
 // Visualizzo i numeri usciti in pagina
 console.log(numbersArray);
