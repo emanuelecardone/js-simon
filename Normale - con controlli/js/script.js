@@ -22,7 +22,7 @@ while(numbersArray.length < numbersAmount){
 console.log(numbersArray);
 
 // Counter con valore di default iniziale
-let countStart = 30;
+let countStart = 3;
 // Leggo il conteggio in console a partire da 30
 console.log(countStart);
 
@@ -44,9 +44,10 @@ const clock = setInterval(function(){
         // Potevo anche creare una funzione col setTimeout (30s di ritardo) ed attivarla quindi concatenandola con la fine del timer
         // oppure evitare il setInterval completamente e far partire il prompt dopo 30s usando solo setTimeout
         // la scelta del setInterval è per rendere possibile la visualizzazione del timer in ogni secondo
-        // Uso filter per creare un array di soli numeri indovinati dall'utente
+        // Up: inserito controllo nel caso l'utente inserisca 2 volte lo stesso numero (userWrittenNumbers è la variabile che conteggia quanti numeri l'utente invia)
         const rightUserNumbers = [];
-        numbersArray.forEach((element, index, array) => {
+        let userWrittenNumbers = 0;
+        while(userWrittenNumbers < numbersAmount) {
 
             // Richiamo alla funzione controllo sui numeri dell'altro file js
             // Il prompt va avanti finché l'utente non inserisce un numero
@@ -54,15 +55,23 @@ const clock = setInterval(function(){
             while(checkLetters(currentUserNumber)){
                 // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
                 // Non uso il trim per fixare eventuali spazi ai lati dell'utente, poiché lo fa il parseInt
-                currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${array.length - index} volte)`));
+                currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${numbersArray.length - userWrittenNumbers} volte)`));
             }
             
             // Se il numero inserito dall'utente è presente nell'array dei numeri usciti
-            if(array.includes(currentUserNumber)){
+            if(numbersArray.includes(currentUserNumber) && !rightUserNumbers.includes(currentUserNumber)){
                 rightUserNumbers.push(currentUserNumber);
+            } else if(rightUserNumbers.includes(currentUserNumber)){
+                alert('Hai già inserito questo numero');
+                // Debug
+                userWrittenNumbers--;
             }
 
-        });
+            userWrittenNumbers++;
+            
+            console.log(rightUserNumbers);
+
+        }
         
         // Output finale
         // L'array iniziale e dei numeri indovinati ce l'ho già
