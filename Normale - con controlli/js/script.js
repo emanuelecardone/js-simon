@@ -45,19 +45,35 @@ const clock = setInterval(function(){
         // oppure evitare il setInterval completamente e far partire il prompt dopo 30s usando solo setTimeout
         // la scelta del setInterval è per rendere possibile la visualizzazione del timer in ogni secondo
         // Up: inserito controllo nel caso l'utente inserisca 2 volte lo stesso numero (userWrittenNumbers è la variabile che conteggia quanti numeri l'utente invia)
+        // Up: inserita variabile per capire se l'utente annulla
         const rightUserNumbers = [];
         let userWrittenNumbers = 0;
+        let userWannaQuit = false;
         while(userWrittenNumbers < numbersAmount) {
 
             // Richiamo alla funzione controllo sui numeri dell'altro file js
             // Il prompt va avanti finché l'utente non inserisce un numero
             let currentUserNumber;
             while(checkLetters(currentUserNumber)){
+
+                currentUserNumber = prompt(`Inserisci un numero che ricordi (Altre ${numbersArray.length - userWrittenNumbers} volte)`);
                 // Numero inserito dall'utente (Dirà altre 5/4/3/2/1 volte per dare un indice all'utente)
                 // Non uso il trim per fixare eventuali spazi ai lati dell'utente, poiché lo fa il parseInt
-                currentUserNumber = parseInt(prompt(`Inserisci un numero che ricordi (Altre ${numbersArray.length - userWrittenNumbers} volte)`));
+                // Se l'utente annulla si esce dal ciclo
+                if(currentUserNumber === null){
+                    userWannaQuit = true;
+                    break;
+                } else{
+                    currentUserNumber = parseInt(currentUserNumber);
+                }
+                
             }
-            
+
+            // Se l'utente annulla si esce dal ciclo
+            if(userWannaQuit){
+                break;
+            }
+
             // Se il numero inserito dall'utente è presente nell'array dei numeri usciti
             if(numbersArray.includes(currentUserNumber) && !rightUserNumbers.includes(currentUserNumber)){
                 rightUserNumbers.push(currentUserNumber);
@@ -77,11 +93,17 @@ const clock = setInterval(function(){
         // L'array iniziale e dei numeri indovinati ce l'ho già
         // La quantità dei numeri indovinati sarà logicamente
         // uguale alla lunghezza dell'array di indovinati
-        alert(` 
-        Ecco i numeri che erano usciti: ${numbersArray}
-        Hai indovintato ${rightUserNumbers.length} numeri
-        Ecco i numeri che hai indovinato: ${rightUserNumbers}
-        `);
+        // Up: l'alert compare solo se l'utente non ha annullato
+        if(!userWannaQuit){
+            alert(` 
+            Ecco i numeri che erano usciti: ${numbersArray}
+            Hai indovintato ${rightUserNumbers.length} numeri
+            Ecco i numeri che hai indovinato: ${rightUserNumbers}
+            `);
+        } else{
+            alert('Hai annullato l\'operazione');
+        }
+       
 
     }         
 
