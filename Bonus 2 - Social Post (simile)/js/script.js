@@ -105,7 +105,8 @@ socialFluid.appendChild(socialRow);
 const numberOfPosts = 5;
 postsArray.forEach((element, index, array) => {
 
-    const {id, content, media, author, likes, created} = element;
+    const {id, content, media, author, created} = element;
+    let {likes} = element;
     const {name, image} = author;
 
     // Col
@@ -154,8 +155,11 @@ postsArray.forEach((element, index, array) => {
     currentPostMiddleImg.classList.add('middle_pic', 'w-100');
     currentPostDownBtn.classList.add('down_btn', 'btn', 'border', 'border-2', 'border-light');
     // Assegno il colore verde al tasto dei post che hanno il like dell'utente
+    // uso una variabile per identificare il post come "liked"
+    let postIsLiked = false;
     if(likesId.includes(id)){
-        currentPostDownBtn.style.backgroundColor = "lime";
+        currentPostDownBtn.classList.add('my_lime_bg');
+        postIsLiked = true;
     } else{
         currentPostDownBtn.classList.add('btn-light');
     }
@@ -183,7 +187,22 @@ postsArray.forEach((element, index, array) => {
     currentPostDownBtnSection.appendChild(currentPostDownBtn);
     currentPostDownLikesSection.appendChild(currentPostDownLikes);
 
-    
+    // Eventi tasto like
+    currentPostDownBtn.addEventListener('click', function(){
+        if(postIsLiked){
+            this.classList.remove('my_lime_bg');
+            this.classList.add('btn-light');
+            likes--;
+            currentPostDownLikes.innerText = `Likes: ${likes}`;
+            postIsLiked = false;
+        } else{
+            this.classList.remove('btn-light');
+            this.classList.add('my_lime_bg');
+            likes++;
+            currentPostDownLikes.innerText = `Likes: ${likes}`;
+            postIsLiked = true;
+        }
+    });
 
 })
 

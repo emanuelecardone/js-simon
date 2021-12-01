@@ -2,6 +2,9 @@
 .btn:focus{
     box-shadow: none;
 }
+.my_lime_bg{
+    background-color: lime;
+}
 
 /* MAIN */
 .social_wrapper{
