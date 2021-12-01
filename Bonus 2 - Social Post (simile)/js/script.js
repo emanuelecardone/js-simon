@@ -123,7 +123,7 @@ postsArray.forEach((element, index, array) => {
     const currentPostDownSection = document.createElement('div');
     currentPostUpSection.classList.add('post_up_wrapper', 'd-flex', 'align-items-center', 'text-white');
     currentPostMiddleSection.classList.add('post_middle_wrapper', 'd-flex', 'flex-column', 'text-white');
-    currentPostDownSection.classList.add('post_down_wrapper', 'd-flex', 'justify-content-between', 'align-items-center', 'text-white');
+    currentPostDownSection.classList.add('post_down_wrapper', 'd-flex', 'justify-content-between', 'align-items-center', 'text-white', 'px-5');
     currentPostContainer.append(currentPostUpSection, currentPostMiddleSection, currentPostDownSection);
 
     // Post sub-sections
@@ -144,17 +144,23 @@ postsArray.forEach((element, index, array) => {
     const currentPostUpDate = document.createElement('span');
     const currentPostMiddleText = document.createElement('p');
     const currentPostMiddleImg = document.createElement('img');
+    const currentPostDownBtn = document.createElement('button');
+    const currentPostDownLikes = document.createElement('span');
     currentPostUpImg.classList.add('profile_pic');
     currentPostUpName.classList.add('profile_name', 'my-1');
     currentPostUpDate.classList.add('post_date');
     currentPostMiddleText.classList.add('text-center');
     currentPostMiddleImg.classList.add('middle_pic', 'w-100');
+    currentPostDownBtn.classList.add('down_btn', 'btn', 'btn-light', 'border', 'border-2', 'border-light');
+    currentPostDownLikes.classList.add('text-center');
     currentPostMiddleImg.src = media;
     currentPostUpName.innerText = name;
     const fixedDate = dateFix(created);
     const [day, month, year] = fixedDate;
     currentPostUpDate.innerText = `${day} ${month}, ${year}`;
     currentPostMiddleText.innerText = content;
+    currentPostDownBtn.innerText = 'Mi piace';
+    currentPostDownLikes.innerText = `Likes: ${likes}`;
     if(image !== null){
         currentPostUpImg.src = image;
         currentPostUpImgSection.appendChild(currentPostUpImg);
@@ -167,6 +173,8 @@ postsArray.forEach((element, index, array) => {
     currentPostUpTextSection.append(currentPostUpName, currentPostUpDate);
     currentPostMiddleTextSection.appendChild(currentPostMiddleText);
     currentPostMiddleImgSection.appendChild(currentPostMiddleImg);
+    currentPostDownBtnSection.appendChild(currentPostDownBtn);
+    currentPostDownLikesSection.appendChild(currentPostDownLikes);
 })
 
 // Funzione per rimuovere i trattini dalle date e dividerle in 3 sottostringhe

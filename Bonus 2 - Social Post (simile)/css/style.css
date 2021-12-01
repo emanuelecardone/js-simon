@@ -1,4 +1,7 @@
 /* COMMON */
+.btn:focus{
+    box-shadow: none;
+}
 
 /* MAIN */
 .social_wrapper{
