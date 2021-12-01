@@ -188,19 +188,37 @@ postsArray.forEach((element, index, array) => {
     currentPostDownLikesSection.appendChild(currentPostDownLikes);
 
     // Eventi tasto like
+    // Se il post ha il like, 
+    //      rimuove il bg lime e lo mette bianco
+    //      diminuisce il numero di likes del post (per key e layout)
+    //      parte un forEach che percorre l'array con l'id dei likes
+    //          se trova l'elemento uguale all'id, lo rimuove dall'array di likes con splice
+    //          il forEach serve per far capire a splice in che indice deve rimuovere l'id dall'array
+    //      la variabile postIsLiked va false
+    // Se il post non ha il like, 
+    //      rimuove il bg bianco e lo mette lime
+    //      aumenta il numero di likes del post (per key e layout)
+    //      aggiunge l'id alla lista likesId
+    //      la variabile postIsLiked va true
     currentPostDownBtn.addEventListener('click', function(){
         if(postIsLiked){
             this.classList.remove('my_lime_bg');
             this.classList.add('btn-light');
             likes--;
             currentPostDownLikes.innerText = `Likes: ${likes}`;
+            likesId.forEach((likesElement, likesIndex, likesArray) => {
+                (likesElement === id) ? likesArray.splice(likesIndex, 1) : null;
+            });
             postIsLiked = false;
+            console.log(likesId);
         } else{
             this.classList.remove('btn-light');
             this.classList.add('my_lime_bg');
             likes++;
             currentPostDownLikes.innerText = `Likes: ${likes}`;
+            likesId.push(id);
             postIsLiked = true;
+            console.log(likesId);
         }
     });
 
